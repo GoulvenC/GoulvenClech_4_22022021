@@ -1,5 +1,9 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+# Game On
+
+Projet 3 de la formation OpenClassrooms "Développeur Front End". Work in progress.
+
+Adresse du répo : https://github.com/GoulvenC/GoulvenClech_4_22022021
+
+Démo live : https://goulvenc.github.io/GoulvenClech_4_22022021
+
+Dépendances : Aucune
