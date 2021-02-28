@@ -1,7 +1,26 @@
 To do :
 [x] Clean JS code, imperative => POO 
 [x] Add close function
+[] form confirm
+[] error alterts
+[] form validation
+
+Tech plan : 
+
+· Form constructor
+    -> .data
+    -> validation() (with errors)
+    -> confirm()
+
+    ^ modalForm constructor
+        -> .modal
+        -> .openButtons
+        -> .closeButton
+        -> appear()
+        -> disappear()
+
+        ^ IndexForm instance
 
 Semainier :
--
--
+1 - finish lessons & clean code
+2 & 3 - Add all functions
