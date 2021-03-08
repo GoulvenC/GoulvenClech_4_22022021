@@ -47,28 +47,42 @@ function form (formData, formConfirmButton) {
     $event.preventDefault();
 
     // clean deprecated erros
-    hideErrors(this.data);
+    this.hideErrors(this.data);
 
     // isValid'll be true if all element validations return true
-    let isValid = this.data.every((element) => {
-      // Send data to the right element validation based on his type
-      switch (element.type) {
+    
+    const elements = [];
+    this.data.forEach(object => {
+      let el;
+      // create an element instance based on the type of object
+      switch (object.type) {
         case 'text': 
-          return elementText(element);
+          el = new elementText(object);
+          break
         case 'email':
-          return elementEmail(element);
+          el = new elementEmail(object);
+          break
         case 'date':
-          return elementDate(element);
+          el = new elementDate(object);
+          break
         case 'number':
-          return elementNumber(element);
+          el = new elementNumber(object);
+          break
         case 'radio':
-          return elementRadio(element);
+          el = new elementRadio(object);
+          break
         case 'checkbox':
-          return elementCheckbox(element);
-        default:
-          console.log(element.type + element.value + ' validé par défaut.');
-          return true;
-      };
+          el = new elementCheckbox(object);
+          break
+        default :
+          el = new element(object);
+          break
+      }
+      elements.push(el);
+    });
+  
+    let isValid = elements.every((element) => {
+      return element.isValid()
     });
     
     // If the form isValid, then send confirmation
@@ -77,84 +91,100 @@ function form (formData, formConfirmButton) {
       location.reload();
     }
   });
+  // hide all form's erros
+  this.hideErrors = function(data) {
+    data.forEach((object) => {
+      object.parentNode.setAttribute('data-error-visible', 'false');
+    });
+  };
 }; 
 
-// check if an element of type Text is valid
-function elementText(element) {
-  if(element.value.length>=2){
-    return true;
-  }else {
-    displayError(element, 'Doit contenir plus de deux caractères.');
+class element {
+  constructor(object) {
+    this.object = object;
+  };
+  isValid() {
+    console.log("Element" + this.object + " non reconnu.")
+    console.log(this.object.type)
     return false;
   }
-};
-
-// check if an element of type Email is valid
-function elementEmail(element) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (re.test(String(element.value).toLowerCase())){
-    return true;
-  }else {
-    displayError(element, 'Doit être une adresse email valide.');
-    return false;
-  };
-}
-
-// check if an element of type Date is valid
-function elementDate(element) {
-  if (isNaN(element.value)) {
-    return true;
-  }else {
-    displayError(element, 'La date n\'est pas valide.');
-    return false;
+  // displayError on an invalid element
+  displayError(errorMessage) {
+    this.object.parentNode.setAttribute('data-error-visible', 'true');
+    this.object.parentNode.setAttribute('data-error', errorMessage);
   };
 };
 
-// check if an element of type Radio is valid
-function elementNumber(element) {
-  if(/^\d+$/.test(String(element.value))) {
-    return true;
-  }else{
-    displayError(element, 'Doit être un nombre entier.');
-    return false;
-  }
-}
-
-// check if an element of type Radio is valid
-function elementRadio(element) {
-  // check if one of the siblings (radio buttons with the same name) is checked
-  if(siblingsRadio = document.querySelectorAll('[name="' + element.name + '"]:checked').length > 0) {
-    return true;
-  }else {
-    displayError(element, 'Vous devez selectionner une option.');
-    return false;
-  };
-}
-
-// check if an element of type checkbox is valid
-function elementCheckbox(element) {
-  // Only check if checked if the chckbox is required
-  if (element.required) {
-    if (element.checked) {
+class elementText extends element {
+  isValid() {
+    if(this.object.value.length>=2){
       return true;
     }else {
-      displayError(element, 'Vous devez accepter les conditions d\'utilisation.');
+      this.displayError('Doit contenir plus de deux caractères.');
+      return false;
+    }
+  }
+}
+
+class elementEmail extends element {
+  isValid() {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(String(this.object.value).toLowerCase())){
+      return true;
+    }else {
+      this.displayError('Doit être une adresse email valide.');
       return false;
     };
-  }else{
-    return true;
   };
 };
 
-// displayError on an invalid element
-function displayError(element, errorMessage) {
-  element.parentNode.setAttribute('data-error-visible', 'true');
-  element.parentNode.setAttribute('data-error', errorMessage);
+class elementDate extends element {
+  isValid() {
+    if (isNaN(this.object.value)) {
+      return true;
+    }else {
+      this.displayError('La date n\'est pas valide.');
+      return false;
+    };
+  };
+};
+  
+class elementNumber extends element {
+  isValid() {
+    if(/^\d+$/.test(String(this.object.value))) {
+      return true;
+    }else{
+      this.displayError('Doit être un nombre entier.');
+      return false;
+    }
+  };
 };
 
-// hide all form's erros
-function hideErrors(data) {
-  data.forEach((element) => {
-    element.parentNode.setAttribute('data-error-visible', 'false');
-  });
+class elementRadio extends element {
+  isValid() {
+    // check if one of the siblings (radio buttons with the same name) is checked
+    if(document.querySelectorAll('[name="' + this.object.name + '"]:checked').length > 0) {
+      return true;
+    }else {
+      this.displayError('Vous devez selectionner une option.');
+      return false;
+    };
+  };
 };
+
+class elementCheckbox extends element {
+  isValid() {
+    // Only check if checked if the chckbox is required
+    if (this.object.required) {
+      if (this.object.checked) {
+        return true;
+      }else {
+        this.displayError('Vous devez accepter les conditions d\'utilisation.');
+        return false;
+      };
+    }else{
+      return true;
+    };
+  };
+};
+

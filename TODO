@@ -1,26 +1,9 @@
 To do :
-[x] Clean JS code, imperative => POO 
-[x] Add close function
-[] form confirm
-[] error alterts
-[] form validation
-[] Arguments par map
-
-Tech plan : 
-
-· Form constructor
-    -> .data
-    -> validation() (with errors)
-    -> confirm()
-
-    ^ modalForm constructor
-        -> .modal
-        -> .openButtons
-        -> .closeButton
-        -> appear()
-        -> disappear()
-
-        ^ IndexForm instance
+[x] to POO
+[] clean JS & label
+[] Pop up confirm
+[] radio
+[] reagencer fichiers
 
 Semainier :
 1 - finish lessons & clean code
