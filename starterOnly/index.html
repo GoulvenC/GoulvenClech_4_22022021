@@ -18,11 +18,11 @@
     </div>
     <div class="main-navbar">
       
-      <a href="#" class="active"><span>Home</span></a>
-      <a href="#"><span>Event Details</span></a>
-      <a href="#"><span>About Us</span></a>
+      <a href="#" class="active"><span>Accueil</span></a>
+      <a href="#"><span>Détails de l'évènement</span></a>
+      <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Past Events</span></a>
+      <a href="#"><span>Évènements passés</span></a>
       <a href="javascript:void(0);" class="icon" onclick="editNav()">
         <i class="fa fa-bars"></i>
       </a>
@@ -33,22 +33,22 @@
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
-            US Nationwide <br>
-            Game-a-Thon
+            Marathon national<br>
+            de jeux vidéos
           </h1>
           <p class="hero-text">
-            Do you live to game? Our next gaming event is now accepting
-            reservations for players, but spots are limited.
+            Vous aimez jouer ? Notre prochain évènement gaming est ouvert
+            aux réservations... Places limitées !
           </p>
           <button class="btn-signup modal-btn">
-            sign up now
+            je m'inscris
           </button>
         </div>
         <div class="hero-img">
           <img src="./bg_img.jpg" alt="img" />
         </div>
         <button class="btn-signup modal-btn">
-          sign up now
+          je m'inscris
         </button>
       </div>
 
@@ -60,55 +60,65 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
             >
               <div
                 class="formData">
-                <label>First Name</label><br>
+                <label>Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
                   minlength="2"
+                  required
                 /><br>
               </div>
               <div
                 class="formData">
-                <label>Last Name</label><br>
+                <label>Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="last"
                   name="last"
+                  required
                 /><br>
               </div>
               <div
                 class="formData">
-                <label>Email</label><br>
+                <label>E-mail</label><br>
                 <input
                   class="text-control"
                   type="email"
                   id="email"
                   name="email"
+                  required
                 /><br>
               </div>
               <div
                 class="formData">
-                <label>Birthdate</label><br>
+                <label>Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  required
                 /><br>
               </div>
               <div
                 class="formData">
-                <label>How many tournaments have you attended? </label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <input 
+                  type="number" 
+                  class="text-control" 
+                  id="quantity" 
+                  name="quantity" 
+                  min="0" 
+                  max="99" 
+                  required>
               </div>
-              <p class="text-label">Which location?</p>
+              <p class="text-label">Quelles villes ?</p>
               <div
                 class="formData">
                 <input
@@ -186,16 +196,17 @@
                   type="checkbox"
                   id="checkbox1"
                   checked
+                  required
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
-                  I have read and I agree to GameOn's terms and conditions.
+                  J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Please sign me up to be notified about future events.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
               </div>
@@ -203,7 +214,7 @@
                 class="btn-submit"
                 type="submit"
                 class="button"
-                value="Go"
+                value="C'est parti"
               />
             </form>
           </div>
