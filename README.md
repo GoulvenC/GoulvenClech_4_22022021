@@ -8,6 +8,3 @@ Démo live : https://goulvenc.github.io/GoulvenClech_4_22022021
 
 Dépendances : Aucune
 
-Schéma POO : 
-![](./schema.png)
-

@@ -7,61 +7,17 @@ function editNav() {
   }
 }
 
-// One modal form called IndexForm, with the data needed
-let IndexForm = new modalForm('.formData', '.btn-submit', '.bground', '.modal-btn');
+// DOM Elements
+const modalbg = document.querySelector(".bground");
+const modalBtn = document.querySelectorAll(".modal-btn");
+const formData = document.querySelectorAll(".formData");
 
-// Modal Form constructor
-function modalForm (formData, formConfirmButton, formModal, modalOpenButtons) {
-  // argument for Form coonstructor
-  this.form = form;
-  this.form(formData, formConfirmButton);
-  // Take the DOM elements needed
-  this.modal = document.querySelector(formModal);
-  this.openButtons = document.querySelectorAll(modalOpenButtons);
-  this.closebutton = this.modal.querySelector('.close');
-  // Listen to one or more buttons to make the modal appear
-  this.openButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        this.modal.style.display = "block";
-    });
+// launch modal event
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-  });
-  // Listen to close button to make the modal disappear
-  this.closebutton.addEventListener('click', () => {
-    this.modal.style.display = "none";
-  });
+// launch modal form
+function launchModal() {
+  modalbg.style.display = "block";
 }
 
-// Form constructor
-function form (formData, formConfirmButton) {
-  // Take the DOM elements needed
-  this.data = document.querySelectorAll(formData);
-  this.confirmButton = document.querySelector(formConfirmButton);
-  // Wait for confirm and send form data for validation
-  this.confirmButton.addEventListener('click', () => {
-    this.dataValidation(this.data);
-  });
-  // Confirm if the form data is valid
-  this.dataValidation = function (data) {
-    console.log(data);
-  };
-  // Display errors if needed
-  this.dataError = function () {
 
-  };
-};
-
-function element (type, data) {
-  this.data;
-  this.type;
-  this.valid = false
-  this.validation = () => {
-
-  }
-}
-
-function elementText (type, id) {
-  this.validation = () => {
-
-  }
-}
