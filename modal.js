@@ -73,7 +73,8 @@ function form (formData, formConfirmButton) {
     
     // If the form isValid, then send confirmation
     if(isValid){
-      console.log("On valide !")
+      window.alert("Votre demande a bien été recue.");
+      location.reload();
     }
   });
 }; 
