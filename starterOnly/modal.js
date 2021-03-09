@@ -99,12 +99,18 @@ function form (formData, formConfirmButton) {
   };
 }; 
 
+// ###################
+// Element constructor
+// ###################
 class element {
   constructor(object) {
     this.object = object;
   };
+  // default isValid() is not supposed to be used, so it return false
+  // if you are using a new type form element, you probably want to
+  // create a new elementChild with a specific isValid()
   isValid() {
-    console.log("Element" + this.object + " non reconnu.")
+    console.log("Element: " + this.object + " non reconnu.")
     console.log(this.object.type)
     return false;
   }
