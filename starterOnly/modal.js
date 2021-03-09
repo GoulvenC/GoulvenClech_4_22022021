@@ -1,11 +1,12 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+// Open menu on mobile
+var topbar = document.getElementById("myTopnav");
+topbar.addEventListener('click', () => {
+  if (topbar.className === "topnav") {
+    topbar.className += " responsive";
   } else {
-    x.className = "topnav";
+    topbar.className = "topnav";
   }
-}
+});
 
 // One modal form called indexForm, with the data needed
 let indexForm = new modalForm('.formData', '.btn-submit', '.bground', '.modal-btn');
@@ -76,7 +77,6 @@ function form (formData, formConfirmButton) {
           break
         default :
           el = new element(object);
-          break
       }
       elements.push(el);
     });
