@@ -187,6 +187,21 @@ main {
   margin: 15px auto;
 }
 
+.modal-success{
+  padding: 15px 8%;
+  margin: 15px auto;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.success-text{
+  font-weight: normal;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 50%;
+}
+
 label {
   font-family: var(--font-default);
   font-size: 17px;
@@ -295,7 +310,7 @@ input[data-error]::after {
   left: 21%;
   top: 19%;
 }
-.close {
+.closeCross {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -305,8 +320,8 @@ input[data-error]::after {
   cursor: pointer;
   transform: scale(0.7);
 }
-.close:before,
-.close:after {
+.closeCross:before,
+.closeCross:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -314,10 +329,10 @@ input[data-error]::after {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.closeCross:before {
   transform: rotate(45deg);
 }
-.close:after {
+.closeCross:after {
   transform: rotate(-45deg);
 }
 .btn-submit,

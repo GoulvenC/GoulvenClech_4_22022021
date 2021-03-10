@@ -1,5 +1,5 @@
 // Open menu on mobile
-var topbar = document.getElementById("myTopnav");
+const topbar = document.getElementById("myTopnav");
 topbar.addEventListener('click', () => {
   if (topbar.className === "topnav") {
     topbar.className += " responsive";
@@ -9,7 +9,7 @@ topbar.addEventListener('click', () => {
 });
 
 // One modal form called indexForm, with the data needed
-let indexForm = new modalForm('.formData', '.btn-submit', '.bground', '.modal-btn');
+const indexForm = new modalForm('.formData', '.btn-submit', '.bground', '.modal-btn');
 
 // #####################
 // modalForm constructor
@@ -21,17 +21,18 @@ function modalForm (formData, formConfirmButton, formModal, modalOpenButtons) {
   // Take the DOM elements needed
   this.modal = document.querySelector(formModal);
   this.openButtons = document.querySelectorAll(modalOpenButtons);
-  this.closebutton = this.modal.querySelector('.close');
+  this.closebuttons = this.modal.querySelectorAll('.close');
   // Listen to one or more buttons to make the modal appear
   this.openButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         this.modal.style.display = "block";
     });
-
   });
-  // Listen to close button to make the modal disappear
-  this.closebutton.addEventListener('click', () => {
+  // Listen to one or more buttons to make the modal disappear
+  this.closebuttons.forEach(btn => {
+    btn.addEventListener('click', () => {
     this.modal.style.display = "none";
+    });
   });
 }
 
@@ -87,8 +88,11 @@ function form (formData, formConfirmButton) {
     
     // If the form isValid, then send confirmation
     if(isValid){
-      window.alert("Votre demande a bien été recue.");
-      location.reload();
+      let formBody = document.querySelector('.modal-body');
+      let formSuccess = document.querySelector('.modal-success');
+      formSuccess.style.minHeight = formBody.clientHeight +"px";
+      formBody.style.display = 'none';
+      formSuccess.style.display = 'flex';
     }
   });
   // hide all form's erros
